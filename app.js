@@ -37,6 +37,7 @@ function onMouseMove(event) {
 }
 
 function handleColorClick(event) {
+  alert(color);
   const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
 }
