@@ -1,9 +1,9 @@
 const canvas = document.getElementById("jsCanvas");
 
-function onMouseEnter(event) {
+function onMouseMove(event) {
   console.log(event);
 }
 
 if (canvas) {
-  canvas.addEventListener("mousemove", on, onmousemove);
+  canvas.addEventListener("mousemove", on, onMouseMove);
 }
