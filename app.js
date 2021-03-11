@@ -5,12 +5,16 @@ canvas.width = 700;
 canvas.height = 700;
 
 ctx.strokeStyle = "#2c2c2c";
-ctx.lineWith = 2.5;
+ctx.lineWidth = 2.5;
 
 let painting = false;
 
 function stopPainting(event) {
   painting = false;
+}
+
+function startPainting(event) {
+  painting = true;
 }
 
 function onMouseMove(event) {
@@ -25,10 +29,6 @@ function onMouseMove(event) {
     ctx.lineTo(x, y);
     ctx.stroke();
   }
-}
-
-function startPainting(event) {
-  painting = true;
 }
 
 if (canvas) {
