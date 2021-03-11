@@ -48,6 +48,6 @@ if (canvas) {
   canvas.addEventListener("mouseleave", stopPainting);
 }
 
-Array.from(colors).forEach((potato) =>
-  potato.addEventListener("click", handleColorClick)
+Array.from(colors).forEach((color) =>
+  color.addEventListener("click", handleColorClick)
 );
