@@ -1,5 +1,6 @@
 const canvas = document.getElementById("jsCanvas"); // 캔버스 객체 선언
 const ctx = canvas.getContext("2d"); // 캔버스에서 context를 2D concept으로 셋팅
+const colors = document.getElementsByClassName("jsColor");
 
 canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth; // 렌더링하기 위한 캔버스의 범위 width 셋팅
 canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight; // 렌더링하기 위한 캔버스의 범위 height 셋팅
@@ -35,9 +36,18 @@ function onMouseMove(event) {
   }
 }
 
+function handleColorClick(event) {
+  const color = event.garget.style.backgroundColor;
+  ctx.strokeStyle = color;
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
 }
+
+Array.from(colors).forEach((potato) =>
+  potato.addEventListener("click", handleColorClick)
+);
