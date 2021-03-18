@@ -78,11 +78,11 @@ function handleCanvasClick(event) {
 
 function handleCM(event) {
   console.log(event);
-  event.defaultPrevent(false);
+  event.preventDefault();
 }
 
 function handleSaveClick() {
-  const image = canvas.toDataURL("image/png");
+  const image = canvas.toDataURL();
   const link = document.createElement("a");
   link.href = image;
   link.download = "PaintJS";
