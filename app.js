@@ -2,6 +2,7 @@ const canvas = document.getElementById("jsCanvas"); // 캔버스 객체 선언
 const ctx = canvas.getContext("2d"); // 캔버스에서 context를 2D concept으로 셋팅
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
+const mode = document.getElementById("jsMode");
 
 canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth; // 렌더링하기 위한 캔버스의 범위 width 셋팅
 canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight; // 렌더링하기 위한 캔버스의 범위 height 셋팅
@@ -10,6 +11,7 @@ ctx.strokeStyle = "#2c2c2c"; // 렌더링하는 선의 color 지정
 ctx.lineWidth = 2.5; // 렌더링하는 선의 두께 PIXEL지정
 
 let painting = false; // Painting 가능 여부
+let filling = false;
 
 function stopPainting(event) {
   painting = false;
@@ -21,7 +23,7 @@ function startPainting(event) {
 
 // 캔버스 내에서 마우스가 클릭되어 move될 경우 line 렌더링
 function onMouseMove(event) {
-  console.log(event);
+  //console.log(event);
   const x = event.offsetX; // 캔버스 내에서의 마우스 x 좌표
   const y = event.offsetY; // 캔버스 내에서의 마우스 y 좌표
 
@@ -47,6 +49,16 @@ function handleRangeChange(event) {
   ctx.lineWidth = size;
 }
 
+function handleModeClick(event) {
+  if (filling === true) {
+    filling = false;
+    mode.innerText = "FILL";
+  } else {
+    filling = true;
+    mode.innerText = "PAINT";
+  }
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -60,4 +72,8 @@ Array.from(colors).forEach((color) =>
 
 if (range) {
   range.addEventListener("input", handleRangeChange);
+}
+
+if (mode) {
+  mode.addEventListener("click", handleModeClick);
 }
