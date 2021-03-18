@@ -82,7 +82,7 @@ function handleCM(event) {
 }
 
 function handleSaveClick() {
-  const image = canvas.toDataUrl("image/png");
+  const image = canvas.toDataURL("image/png");
   const link = document.createElement("a");
   link.href = image;
   link.download = "PaintJS";
