@@ -43,7 +43,8 @@ function handleColorClick(event) {
 }
 
 function handleRangeChange(event) {
-  console.log(event);
+  const size = event.target.value;
+  ctx.lineWidth = size;
 }
 
 if (canvas) {
