@@ -1,6 +1,7 @@
 const canvas = document.getElementById("jsCanvas"); // 캔버스 객체 선언
 const ctx = canvas.getContext("2d"); // 캔버스에서 context를 2D concept으로 셋팅
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
 
 canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth; // 렌더링하기 위한 캔버스의 범위 width 셋팅
 canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight; // 렌더링하기 위한 캔버스의 범위 height 셋팅
@@ -41,6 +42,10 @@ function handleColorClick(event) {
   ctx.strokeStyle = color;
 }
 
+function handleRangeChange(event) {
+  console.log(event);
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -51,3 +56,7 @@ if (canvas) {
 Array.from(colors).forEach((color) =>
   color.addEventListener("click", handleColorClick)
 );
+
+if (range) {
+  range.addEventListener("input", handleRangeChange);
+}
