@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d"); // 캔버스에서 context를 2D concept으
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
+const saveBtn = document.getElementById("jsSave");
 
 const INITIAL_COLOR = "#2C2C2C";
 const CANVAS_SIZE = 700;
@@ -11,6 +12,9 @@ const CANVAS_SIZE = 700;
 //canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight; // 렌더링하기 위한 캔버스의 범위 height 셋팅
 canvas.width = CANVAS_SIZE; // 렌더링하기 위한 캔버스의 범위 width 셋팅
 canvas.height = CANVAS_SIZE; // 렌더링하기 위한 캔버스의 범위 height 셋팅
+
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 ctx.strokeStyle = INITIAL_COLOR; // 렌더링하는 선의 color 지정
 ctx.fillStyle = INITIAL_COLOR;
@@ -72,12 +76,26 @@ function handleCanvasClick(event) {
   }
 }
 
+function handleCM(event) {
+  console.log(event);
+  event.defaultPrevent(false);
+}
+
+function handleSaveClick() {
+  const image = canvas.toDataUrl("image/jpeg");
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "PaintJS.jpeg";
+  link.click();
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
+  canvas.addEventListener("contextmenu", handleCM);
 }
 
 Array.from(colors).forEach((color) =>
@@ -90,4 +108,8 @@ if (range) {
 
 if (mode) {
   mode.addEventListener("click", handleModeClick);
+}
+
+if (saveBtn) {
+  saveBtn.addEventListener("click", handleSaveClick);
 }
